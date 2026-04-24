@@ -128,11 +128,46 @@ git push -u origin main
 - [x] Compose file created (optional)
 - [x] README created
 - [x] Submission report created
+- [x] Docker commands executed successfully
 - [ ] Docker build screenshot captured
 - [ ] Container output screenshot captured
 - [ ] `docker ps` screenshot captured
-- [ ] GitHub repo created and push completed
+- [ ] GitHub repo created and push completed (pending GitHub login)
 
 ## Notes
 
 If GitHub CLI (`gh`) is not installed, create the repository manually on github.com, then run the git push commands from terminal.
+
+## Execution Evidence (Actual Results)
+
+Executed from project directory:
+
+1. `docker build -t my-app .`
+Result: Success, image `my-app:latest` built.
+
+2. `docker run --rm --name my-app-container my-app`
+Result: Success, output was:
+
+```text
+Hello from Docker!
+```
+
+3. `docker run -d --name my-app-running my-app sh -c "sleep 120"` then `docker ps`
+Result: Success, running container visible in `docker ps`:
+
+```text
+CONTAINER ID   IMAGE     COMMAND               STATUS                  NAMES
+7095f75b6619   my-app    "sh -c 'sleep 120'"   Up Less than a second   my-app-running
+```
+
+4. Cleanup done:
+- `docker stop my-app-running`
+- `docker rm my-app-running`
+
+5. Git repository initialized and committed:
+- Commit: `3419fbc`
+- Branch: `main`
+
+6. GitHub CLI installed:
+- `gh` installed at `C:\Program Files\GitHub CLI\gh.exe`
+- Final blocker: interactive `gh auth login` must be completed with your GitHub account.
